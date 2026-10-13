@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <title>În oraș — evenimente, mâncare și sală</title>
+  <style>
+    :root {
+      --ink: #20251f; --muted: #6d756c; --green: #316b4d;
+      --cream: #f7f6f2; --card: #fff; --line: #e7e7df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--cream); color: var(--ink);
+      font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header { padding: 24px 18px 12px; max-width: 760px; margin: auto; }
+    h1 { margin: 0; font-size: 27px; }
+    header p { color: var(--muted); margin: 5px 0 0; }
+    main { max-width: 760px; margin: auto; padding: 8px 16px 96px; }
+    nav {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      position: sticky; top: 0; z-index: 2; padding: 8px 0;
+      background: var(--cream);
+    }
+    nav button, .filter button {
+      border: 1px solid var(--line); border-radius: 12px; padding: 10px 5px;
+      background: white; color: var(--ink); font-size: 14px;
+    }
+    nav button.active, .primary { background: var(--green); color: white; border-color: var(--green); }
+    section { padding-top: 12px; }
+    h2 { font-size: 21px; margin: 14px 0 10px; }
+    h3 { margin: 0 0 5px; font-size: 18px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 16px; margin: 10px 0;
+    }
+    .meta { color: var(--muted); font-size: 14px; }
+    .filter { display: flex; gap: 8px; }
+    input, select, textarea {
+      width: 100%; padding: 12px; border: 1px solid var(--line);
+      border-radius: 11px; background: white; color: var(--ink); font: inherit;
+      margin: 5px 0 10px;
+    }
+    .filter input { min-width: 0; }
+    .filter select { min-width: 0; }
+    label { font-size: 14px; font-weight: 600; }
+    .primary, .ticket, .secondary {
+      display: inline-block; border: 0; border-radius: 10px; padding: 11px 14px;
+      text-decoration: none; font: inherit; cursor: pointer; margin-top: 8px;
+    }
+    .ticket { background: #e9f2eb; color: #24563b; font-weight: 650; }
+    .secondary { background: #eee; color: var(--ink); }
+    .hidden { display: none; }
+    .empty { color: var(--muted); padding: 12px 2px; }
+    .small { font-size: 13px; color: var(--muted); }
+    @media (max-width: 380px) { nav button { font-size: 12px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>În oraș</h1>
+    <p>Evenimente, idei de mâncare și antrenamente.</p>
+  </header>
+
+  <main>
+    <nav aria-label="Secțiuni">
+      <button class="active" data-page="events">Activități</button>
+      <button data-page="food">Mâncare</button>
+      <button data-page="gym">Sală</button>
+      <button data-page="admin">Adaugă</button>
+    </nav>
+
+    <section id="events">
+      <h2>Evenimente</h2>
+      <div class="filter">
+        <input id="cityFilter" placeholder="Oraș, de ex. Cluj-Napoca" aria-label="Filtrează după oraș">
+        <select id="categoryFilter" aria-label="Filtrează după categorie">
+          <option value="">Toate categoriile</option>
+          <option>Muzică</option><option>Sport</option><option>Familie</option>
+          <option>Artă</option><option>Altele</option>
+        </select>
+      </div>
+      <div id="eventList"></div>
+    </section>
+
+    <section id="food" class="hidden">
+      <h2>Idei de mâncare</h2>
+      <article class="card">
+        <h3>Paste cu roșii și busuioc</h3>
+        <p class="meta">20 min · 2 porții</p>
+        <p><b>Ingrediente:</b> 200 g paste, 250 g roșii, un cățel de usturoi, busuioc, ulei.</p>
+        <p><b>Preparare:</b> Fierbe pastele. Călește usturoiul, adaugă roșiile și gătește 8–10 minute. Amestecă sosul cu pastele și busuiocul.</p>
+      </article>
+      <article class="card">
+        <h3>Omletă cu legume</h3>
+        <p class="meta">15 min · 1 porție</p>
+        <p><b>Ingrediente:</b> 2 ouă, ardei, roșii, puțină brânză și ulei.</p>
+        <p><b>Preparare:</b> Bate ouăle, adaugă legumele tocate și gătește într-o tigaie până se încheagă.</p>
+      </article>
+    </section>
+
+    <section id="gym" class="hidden">
+      <h2>Antrenamente</h2>
+      <article class="card">
+        <h3>Antrenament pentru tot corpul</h3>
+        <p class="meta">Începător · aproximativ 30 minute</p>
+        <p>Genuflexiuni — 3 × 10<br>Împins la piept la aparat — 3 × 10<br>Ramat la cablu — 3 × 10<br>Plank — 3 × 20 secunde</p>
+        <p class="small">Alege greutăți potrivite nivelului tău și oprește-te dacă simți durere.</p>
+      </article>
+    </section>
+
+    <section id="admin" class="hidden">
+      <h2>Adaugă un eveniment</h2>
+      <form id="eventForm" class="card">
+        <label for="title">Titlu</label>
+        <input id="title" required placeholder="Ex.: Concert în aer liber">
+        <label for="city">Oraș</label>
+        <input id="city" required placeholder="Ex.: Brașov">
+        <label for="venue">Locație</label>
+        <input id="venue" required placeholder="Ex.: Piața Sfatului">
+        <label for="date">Data și ora</label>
+        <input id="date" type="datetime-local" required>
+        <label for="category">Categorie</label>
+        <select id="category">
+          <option>Muzică</option><option>Sport</option><option>Familie</option>
+          <option>Artă</option><option>Altele</option>
+        </select>
+        <label for="description">Descriere</label>
+        <textarea id="description" rows="3" placeholder="Câteva detalii despre eveniment"></textarea>
+        <label for="url">Link pentru rezervare sau bilete</label>
+        <input id="url" type="url" placeholder="https://...">
+        <button class="primary" type="submit">Publică evenimentul</button>
+        <p class="small">În acest prototip, evenimentele se salvează doar în acest browser.</p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const starterEvents = [
+      {
+        title: "Exemplu: târg local",
+        city: "București",
+        venue: "Centrul orașului",
+        date: "2027-05-15T12:00",
+        category: "Altele",
+        description: "Acesta este un eveniment demonstrativ. Îl poți șterge din lista aplicației.",
+        url: ""
+      }
+    ];
+
+    let events = JSON.parse(localStorage.getItem("inOrasEvents") || "null") || starterEvents;
+    const eventList = document.querySelector("#eventList");
+
+    function renderEvents() {
+      const city = document.querySelector("#cityFilter").value.trim().toLocaleLowerCase("ro");
+      const category = document.querySelector("#categoryFilter").value;
+      const filtered = events.filter(event =>
+        event.city.toLocaleLowerCase("ro").includes(city) &&
+        (!category || event.category === category)
+      );
+
+      eventList.innerHTML = filtered.length ? "" : '<p class="empty">Nu am găsit evenimente. Încearcă alte filtre.</p>';
+
+      filtered.forEach(event => {
+        const date = event.date
+          ? new Date(event.date).toLocaleString("ro-RO", { dateStyle: "medium", timeStyle: "short" })
+          : "";
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h3>${escapeHTML(event.title)}</h3>
+          <p class="meta">${escapeHTML(event.city)} · ${escapeHTML(event.venue)}${date ? " · " + escapeHTML(date) : ""}</p>
+          <p class="meta">${escapeHTML(event.category)}</p>
+          ${event.description ? `<p>${escapeHTML(event.description)}</p>` : ""}
+          ${event.url && safeURL(event.url) ? `<a class="ticket" href="${escapeHTML(event.url)}" target="_blank" rel="noopener">Rezervă / Cumpără bilet</a>` : ""}
+        `;
+        eventList.appendChild(card);
+      });
+    }
+
+    function escapeHTML(value) {
+      return String(value || "").replace(/[&<>"']/g, char =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]
+      );
+    }
+
+    function safeURL(value) {
+      try { return new URL(value).protocol === "https:"; }
+      catch { return false; }
+    }
+
+    document.querySelectorAll("nav button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("nav button").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        document.querySelectorAll("main section").forEach(section => section.classList.add("hidden"));
+        document.querySelector("#" + button.dataset.page).classList.remove("hidden");
+      });
+    });
+
+    document.querySelector("#cityFilter").addEventListener("input", renderEvents);
+    document.querySelector("#categoryFilter").addEventListener("change", renderEvents);
+
+    document.querySelector("#eventForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const url = document.querySelector("#url").value.trim();
+
+      if (url && !safeURL(url)) {
+        alert("Introdu un link valid care începe cu https://");
+        return;
+      }
+
+      events.unshift({
+        title: document.querySelector("#title").value.trim(),
+        city: document.querySelector("#city").value.trim(),
+        venue: document.querySelector("#venue").value.trim(),
+        date: document.querySelector("#date").value,
+        category: document.querySelector("#category").value,
+        description: document.querySelector("#description").value.trim(),
+        url
+      });
+
+      localStorage.setItem("inOrasEvents", JSON.stringify(events));
+      event.target.reset();
+      renderEvents();
+      document.querySelector('[data-page="events"]').click();
+      alert("Evenimentul a fost adăugat pe acest dispozitiv.");
+    });
+
+    renderEvents();
+  </script>
+</body>
+</html>
