@@ -4,184 +4,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OUTFIT STUDIO</title>
+<title>NEXPLAY | Gaming Universe</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #080b12;
+  --panel: #111725;
+  --green: #a3ff12;
+  --purple: #a855f7;
+  --text: #f5f7ff;
+  --muted: #929bb0;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f7f5f2;
-    color: #252525;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
 }
 
 header {
-    background: #252525;
-    color: white;
-    padding: 25px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 76px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #20283a;
+  position: sticky;
+  top: 0;
+  background: rgba(8,11,18,.95);
+  z-index: 10;
+  backdrop-filter: blur(15px);
 }
 
 .logo {
-    font-size: 25px;
-    letter-spacing: 3px;
-    font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span { color: var(--green); }
+
+nav {
+  display: flex;
+  gap: 28px;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: .2s;
 }
 
+nav a:hover { color: var(--green); }
+
 .hero {
-    padding: 85px 10%;
-    text-align: center;
-    background: #e9e3dc;
+  padding: 75px 7%;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg,#080b12 5%,rgba(8,11,18,.88) 45%,rgba(8,11,18,.2)),
+    url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600') center/cover;
+}
+
+.hero-content { max-width: 620px; }
+
+.tag {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
 }
 
 .hero h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(38px,6vw,68px);
+  line-height: 1.15;
+  margin: 18px 0;
 }
+
+.hero h1 span { color: var(--green); }
 
 .hero p {
-    color: #666;
-    font-size: 17px;
-    margin-bottom: 25px;
+  color: #c0c8d8;
+  line-height: 1.7;
+  margin-bottom: 25px;
 }
 
-button {
-    background: #252525;
-    color: white;
-    border: none;
-    padding: 14px 25px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 15px;
-    transition: 0.3s;
+.btn {
+  display: inline-block;
+  padding: 14px 25px;
+  border-radius: 7px;
+  background: var(--green);
+  color: #080b12;
+  font-weight: 900;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: .25s;
 }
 
-button:hover {
-    background: #777;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #a3ff1260;
 }
 
-section {
-    padding: 55px 8%;
+.container {
+  padding: 55px 7%;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 35px;
-    font-size: 30px;
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
 }
 
-.filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 35px;
+.section-head h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 23px;
 }
 
-.filters button {
-    background: #ded8d1;
-    color: #252525;
+.section-head span { color: var(--green); }
+
+.search {
+  width: 260px;
+  max-width: 100%;
+  padding: 12px 16px;
+  background: var(--panel);
+  border: 1px solid #293248;
+  color: white;
+  border-radius: 8px;
+  outline: none;
 }
 
-.filters button.active,
-.filters button:hover {
-    background: #252525;
-    color: white;
+.categories {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
-.outfits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
+.category {
+  background: var(--panel);
+  border: 1px solid #293248;
+  color: var(--muted);
+  padding: 10px 17px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
-.card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 12px #00000010;
-    transition: 0.3s;
+.category.active, .category:hover {
+  background: var(--green);
+  color: #080b12;
+  border-color: var(--green);
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 22px;
 }
 
-.card img {
-    width: 100%;
-    height: 270px;
-    object-fit: cover;
+.game-card {
+  background: var(--panel);
+  border: 1px solid #202a3c;
+  border-radius: 13px;
+  overflow: hidden;
+  transition: .3s;
 }
 
-.card-content {
-    padding: 20px;
+.game-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--green);
+  box-shadow: 0 10px 35px #0008;
 }
 
-.card-content h3 {
-    margin-bottom: 10px;
+.game-card img {
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  display: block;
 }
 
-.card-content p {
-    color: #777;
-    line-height: 1.6;
-    font-size: 14px;
+.game-info { padding: 17px; }
+
+.game-info h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
 }
 
-.tag {
-    display: inline-block;
-    background: #eee8e1;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 12px;
+.game-info p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.5;
 }
 
-.random-box {
-    text-align: center;
-    background: #e9e3dc;
-    border-radius: 12px;
-    padding: 40px 20px;
+.game-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#result {
-    margin-top: 25px;
-    font-size: 18px;
-    line-height: 2;
+.game-footer small { color: var(--green); }
+
+.play {
+  border: none;
+  background: var(--green);
+  color: #080b12;
+  padding: 9px 17px;
+  border-radius: 6px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.play:hover { background: white; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin-top: 50px;
+}
+
+.stat {
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid #202a3c;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat h2 {
+  font-family: 'Orbitron',sans-serif;
+  color: var(--green);
+  font-size: 30px;
+}
+
+.stat p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
 }
 
 footer {
-    background: #252525;
-    color: white;
-    text-align: center;
-    padding: 25px;
+  padding: 30px 7%;
+  border-top: 1px solid #20283a;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
 }
 
-@media(max-width: 600px) {
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
+#gameModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #000d;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-    nav a {
-        margin: 0 7px;
-        font-size: 13px;
-    }
+.modal {
+  background: var(--panel);
+  padding: 30px;
+  border: 1px solid var(--green);
+  border-radius: 15px;
+  width: 450px;
+  max-width: 100%;
+  text-align: center;
+}
 
-    .hero h1 {
-        font-size: 34px;
-    }
+.modal h2 {
+  font-family: 'Orbitron',sans-serif;
+  margin-bottom: 15px;
+}
+
+.modal p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.close {
+  margin-top: 15px;
+  background: #293248;
+  color: white;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media(max-width:650px) {
+  header { padding: 0 5%; }
+  nav { gap: 12px; }
+  nav a { font-size: 11px; }
+  .container { padding: 40px 5%; }
+  .hero { padding: 55px 5%; }
+  .stats { grid-template-columns: 1fr; }
+  .section-head { align-items: flex-start; flex-direction: column; }
 }
 </style>
 </head>
@@ -189,159 +323,312 @@ footer {
 <body>
 
 <header>
-    <div class="logo">OUTFIT STUDIO.</div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#outfits">Outfits</a>
-        <a href="#generator">Generator</a>
-    </nav>
+  <div class="logo">NEX<span>PLAY</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </nav>
 </header>
 
-<div class="hero" id="home">
-    <h1>Find Your Style.</h1>
-    <p>Inspirație, combinații și outfituri pentru fiecare zi.</p>
-    <a href="#outfits">
-        <button>Explorează outfiturile</button>
-    </a>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">WELCOME TO THE NEXT LEVEL</div>
+    <h1>PLAY<br><span>WITHOUT</span><br>LIMITS.</h1>
+    <p>
+      Descoperă universul NEXPLAY. Joacă jocuri distractive,
+      descoperă provocări și intră în lumea gamingului.
+    </p>
+    <a href="#games" class="btn">EXPLORE GAMES →</a>
+  </div>
+</section>
+
+<main class="container" id="games">
+
+  <div class="section-head">
+    <h2>FEATURED <span>GAMES</span></h2>
+    <input class="search" id="search"
+      placeholder="🔍 Search games..."
+      oninput="filterGames()">
+  </div>
+
+  <div class="categories">
+    <button class="category active" onclick="setCategory('All',this)">All Games</button>
+    <button class="category" onclick="setCategory('Action',this)">Action</button>
+    <button class="category" onclick="setCategory('Racing',this)">Racing</button>
+    <button class="category" onclick="setCategory('Puzzle',this)">Puzzle</button>
+    <button class="category" onclick="setCategory('Sports',this)">Sports</button>
+  </div>
+
+  <div class="games" id="gamesList"></div>
+
+  <section class="stats" id="about">
+    <div class="stat">
+      <h2>06</h2>
+      <p>FEATURED GAMES</p>
+    </div>
+    <div class="stat">
+      <h2>24/7</h2>
+      <p>GAMING FUN</p>
+    </div>
+    <div class="stat">
+      <h2>100%</h2>
+      <p>ENTERTAINMENT</p>
+    </div>
+  </section>
+
+</main>
+
+<div id="gameModal">
+  <div class="modal">
+    <h2 id="modalTitle">GAME</h2>
+    <p id="modalDescription"></p>
+    <div id="gameArea"></div>
+    <button class="close" onclick="closeGame()">CLOSE</button>
+  </div>
 </div>
 
-<section id="outfits">
-    <h2>Explorează stilurile</h2>
-
-    <div class="filters">
-        <button class="active" onclick="filterOutfits('all', this)">Toate</button>
-        <button onclick="filterOutfits('casual', this)">Casual</button>
-        <button onclick="filterOutfits('streetwear', this)">Streetwear</button>
-        <button onclick="filterOutfits('elegant', this)">Elegant</button>
-        <button onclick="filterOutfits('sport', this)">Sport</button>
-    </div>
-
-    <div class="outfits">
-
-        <div class="card" data-style="casual">
-            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Outfit casual">
-            <div class="card-content">
-                <h3>Everyday Casual</h3>
-                <p>Blugi albaștri + tricou alb + sneakers + geacă denim.</p>
-                <span class="tag">CASUAL</span>
-            </div>
-        </div>
-
-        <div class="card" data-style="streetwear">
-            <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=600" alt="Outfit streetwear">
-            <div class="card-content">
-                <h3>Streetwear Vibes</h3>
-                <p>Pantaloni largi + hoodie + sneakers + accesorii.</p>
-                <span class="tag">STREETWEAR</span>
-            </div>
-        </div>
-
-        <div class="card" data-style="elegant">
-            <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=600" alt="Outfit elegant">
-            <div class="card-content">
-                <h3>Old Money</h3>
-                <p>Pantaloni eleganți + cămașă + pulover + mocasini.</p>
-                <span class="tag">ELEGANT</span>
-            </div>
-        </div>
-
-        <div class="card" data-style="sport">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600" alt="Outfit sport">
-            <div class="card-content">
-                <h3>Sporty Look</h3>
-                <p>Pantaloni sport + hanorac + sneakers comozi.</p>
-                <span class="tag">SPORT</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section id="generator">
-    <div class="random-box">
-        <h2>Outfit Generator</h2>
-        <p>Nu știi cu ce să te îmbraci? Lasă-ne să alegem!</p>
-
-        <br>
-        <button onclick="generateOutfit()">Generează un outfit ✨</button>
-
-        <div id="result">
-            Combinația ta va apărea aici.
-        </div>
-    </div>
-</section>
-
 <footer>
-    <p>© 2026 OUTFIT STUDIO. | Find your own style.</p>
+  © 2026 NEXPLAY — YOUR GAMING UNIVERSE.
+  <br><br>Made for gamers.
 </footer>
 
 <script>
-function filterOutfits(style, button) {
-    const cards = document.querySelectorAll('.card');
+const games = [
+  {
+    name:"Neon Runner",
+    category:"Action",
+    description:"Evită obstacolele și încearcă să obții un scor cât mai mare.",
+    image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700"
+  },
+  {
+    name:"Speed Legends",
+    category:"Racing",
+    description:"Intră în lumea curselor și a vitezei.",
+    image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700"
+  },
+  {
+    name:"Brain Master",
+    category:"Puzzle",
+    description:"Testează-ți logica și rezolvă provocările.",
+    image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=700"
+  },
+  {
+    name:"Football Stars",
+    category:"Sports",
+    description:"Descoperă pasiunea pentru fotbal.",
+    image:"https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700"
+  },
+  {
+    name:"Cyber World",
+    category:"Action",
+    description:"Explorează un univers digital futurist.",
+    image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700"
+  },
+  {
+    name:"Drift City",
+    category:"Racing",
+    description:"Pregătește-te pentru o aventură pe patru roți.",
+    image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700"
+  }
+];
 
-    cards.forEach(card => {
-        if (style === 'all' || card.dataset.style === style) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+let currentCategory = "All";
 
-    document.querySelectorAll('.filters button').forEach(btn => {
-        btn.classList.remove('active');
-    });
+function renderGames() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const list = document.getElementById("gamesList");
 
-    button.classList.add('active');
+  const filtered = games.filter(game =>
+    (currentCategory === "All" || game.category === currentCategory) &&
+    game.name.toLowerCase().includes(search)
+  );
+
+  list.innerHTML = "";
+
+  filtered.forEach(game => {
+    const card = document.createElement("article");
+    card.className = "game-card";
+
+    const img = document.createElement("img");
+    img.src = game.image;
+    img.alt = game.name;
+    img.loading = "lazy";
+
+    const info = document.createElement("div");
+    info.className = "game-info";
+
+    const title = document.createElement("h3");
+    title.textContent = game.name;
+
+    const description = document.createElement("p");
+    description.textContent = game.description;
+
+    const footer = document.createElement("div");
+    footer.className = "game-footer";
+
+    const category = document.createElement("small");
+    category.textContent = game.category.toUpperCase();
+
+    const button = document.createElement("button");
+    button.className = "play";
+    button.textContent = "PLAY →";
+    button.addEventListener("click", () => openGame(game));
+
+    footer.append(category, button);
+    info.append(title, description, footer);
+    card.append(img, info);
+    list.append(card);
+  });
+
+  if (!filtered.length) {
+    list.textContent = "No games found. Try another search.";
+  }
 }
 
-const tops = [
-    'Tricou alb',
-    'Hoodie negru',
-    'Cămașă albă',
-    'Pulover bej',
-    'Top simplu',
-    'Hanorac gri'
-];
-
-const bottoms = [
-    'Blugi albaștri',
-    'Pantaloni negri',
-    'Pantaloni largi',
-    'Fustă denim',
-    'Pantaloni bej'
-];
-
-const shoes = [
-    'Sneakers albi',
-    'Sneakers negri',
-    'Mocasini',
-    'Ghete',
-    'Pantofi sport'
-];
-
-const accessories = [
-    'Geantă neagră',
-    'Ochelari de soare',
-    'Curea simplă',
-    'Bijuterii discrete',
-    'Șapcă'
-];
-
-function randomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
+function filterGames() {
+  renderGames();
 }
 
-function generateOutfit() {
-    const result = document.getElementById('result');
-
-    result.innerHTML = `
-        <strong>✨ Outfit-ul tău:</strong><br>
-        👕 ${randomItem(tops)}<br>
-        👖 ${randomItem(bottoms)}<br>
-        👟 ${randomItem(shoes)}<br>
-        👜 ${randomItem(accessories)}
-    `;
+function setCategory(category, button) {
+  currentCategory = category;
+  document.querySelectorAll(".category").forEach(btn =>
+    btn.classList.remove("active")
+  );
+  button.classList.add("active");
+  renderGames();
 }
+
+function openGame(game) {
+  document.getElementById("gameModal").style.display = "flex";
+  document.getElementById("modalTitle").textContent = game.name;
+  document.getElementById("modalDescription").textContent = game.description;
+
+  const area = document.getElementById("gameArea");
+  area.innerHTML = "";
+
+  if (game.name === "Neon Runner") {
+    startRunner(area);
+  } else {
+    const message = document.createElement("p");
+    message.textContent = "Acest joc este momentan în curând. Revino pentru update-uri!";
+    area.append(message);
+  }
+}
+
+function closeGame() {
+  document.getElementById("gameModal").style.display = "none";
+}
+
+function startRunner(area) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 350;
+  canvas.height = 190;
+  canvas.style.maxWidth = "100%";
+  canvas.style.background = "#080b12";
+  canvas.style.border = "1px solid #a3ff12";
+  canvas.style.borderRadius = "8px";
+
+  const scoreText = document.createElement("p");
+  scoreText.style.marginTop = "12px";
+
+  const instruction = document.createElement("p");
+  instruction.textContent = "Apasă SPACE sau click pentru a sări!";
+  instruction.style.fontSize = "12px";
+
+  area.append(canvas, scoreText, instruction);
+
+  const ctx = canvas.getContext("2d");
+  let playerY = 145;
+  let velocity = 0;
+  let obstacleX = 350;
+  let score = 0;
+  let running = true;
+  let frame;
+
+  function jump() {
+    if (playerY >= 145) velocity = -9;
+  }
+
+  function keyHandler(e) {
+    if (e.code === "Space") {
+      e.preventDefault();
+      jump();
+    }
+  }
+
+  document.addEventListener("keydown", keyHandler);
+  canvas.addEventListener("click", jump);
+
+  function draw() {
+    if (!running) return;
+
+    ctx.clearRect(0,0,350,190);
+
+    ctx.fillStyle = "#a3ff12";
+    ctx.fillRect(0,170,350,3);
+
+    velocity += 0.45;
+    playerY += velocity;
+
+    if (playerY > 145) {
+      playerY = 145;
+      velocity = 0;
+    }
+
+    obstacleX -= 4;
+
+    if (obstacleX < -20) {
+      obstacleX = 350;
+      score++;
+    }
+
+    ctx.fillStyle = "#a3ff12";
+    ctx.fillRect(35,playerY,25,25);
+
+    ctx.fillStyle = "#a855f7";
+    ctx.fillRect(obstacleX,145,18,25);
+
+    ctx.fillStyle = "white";
+    ctx.font = "14px Arial";
+    ctx.fillText("SCORE: " + score, 12, 20);
+
+    if (
+      obstacleX < 60 &&
+      obstacleX > 25 &&
+      playerY > 120
+    ) {
+      running = false;
+      ctx.fillStyle = "white";
+      ctx.font = "22px Arial";
+      ctx.fillText("GAME OVER", 105, 90);
+      scoreText.textContent = "Scor final: " + score;
+      document.removeEventListener("keydown", keyHandler);
+      return;
+    }
+
+    scoreText.textContent = "Scor: " + score;
+    frame = requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  const observer = new MutationObserver(() => {
+    if (!document.getElementById("gameModal").contains(canvas)) {
+      running = false;
+      cancelAnimationFrame(frame);
+      document.removeEventListener("keydown", keyHandler);
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.getElementById("gameModal"), {
+    childList:true,
+    subtree:true
+  });
+}
+
+renderGames();
 </script>
 
 </body>
