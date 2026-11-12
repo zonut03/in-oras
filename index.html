@@ -4,631 +4,968 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXPLAY | Gaming Universe</title>
+<meta name="theme-color" content="#f7f5f0">
+<title>NOIRÉ | Luxury Perfumes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
-
 :root {
-  --bg: #080b12;
-  --panel: #111725;
-  --green: #a3ff12;
-  --purple: #a855f7;
-  --text: #f5f7ff;
-  --muted: #929bb0;
+  --bg: #f7f5f0;
+  --dark: #171713;
+  --gold: #a88b5c;
+  --muted: #858078;
+  --white: #fff;
+  --border: #e8e4dc;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  font-family:'DM Sans',sans-serif;
+}
+
+button, input { font:inherit; }
+button { cursor:pointer; }
+
+.topbar {
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
 header {
-  height: 76px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #20283a;
-  position: sticky;
-  top: 0;
-  background: rgba(8,11,18,.95);
-  z-index: 10;
-  backdrop-filter: blur(15px);
+  height:85px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:rgba(247,245,240,.96);
+  backdrop-filter:blur(15px);
+  z-index:100;
 }
 
 .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:37px;
+  letter-spacing:6px;
+  font-weight:600;
 }
 
-.logo span { color: var(--green); }
-
-nav {
-  display: flex;
-  gap: 28px;
-}
+nav { display:flex; gap:35px; }
 
 nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-  transition: .2s;
+  text-decoration:none;
+  color:var(--dark);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  transition:.3s;
 }
 
-nav a:hover { color: var(--green); }
+nav a:hover { color:var(--gold); }
+
+.header-actions { display:flex; gap:22px; align-items:center; }
+
+.icon-btn {
+  background:none;
+  border:none;
+  font-size:20px;
+  position:relative;
+}
+
+.cart-count {
+  position:absolute;
+  top:-9px;
+  right:-10px;
+  background:var(--gold);
+  color:white;
+  border-radius:50%;
+  width:17px;
+  height:17px;
+  font-size:10px;
+  display:grid;
+  place-items:center;
+}
+
+.menu-btn { display:none; }
+
+/* HERO */
 
 .hero {
-  padding: 75px 7%;
-  min-height: 390px;
-  display: flex;
-  align-items: center;
-  background:
-    linear-gradient(90deg,#080b12 5%,rgba(8,11,18,.88) 45%,rgba(8,11,18,.2)),
-    url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600') center/cover;
+  min-height:620px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:65px 7%;
+  align-items:center;
+  gap:45px;
 }
 
-.hero-content { max-width: 620px; }
+.hero-content { max-width:550px; }
 
-.tag {
-  color: var(--green);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 3px;
+.eyebrow {
+  color:var(--gold);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:600;
+  margin-bottom:24px;
 }
 
 .hero h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(38px,6vw,68px);
-  line-height: 1.15;
-  margin: 18px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(65px,8vw,112px);
+  line-height:.91;
+  font-weight:400;
+  margin-bottom:30px;
 }
 
-.hero h1 span { color: var(--green); }
+.hero h1 span { color:var(--gold); font-style:italic; }
 
 .hero p {
-  color: #c0c8d8;
-  line-height: 1.7;
-  margin-bottom: 25px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+  max-width:380px;
+  margin-bottom:35px;
 }
 
-.btn {
-  display: inline-block;
-  padding: 14px 25px;
-  border-radius: 7px;
-  background: var(--green);
-  color: #080b12;
-  font-weight: 900;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: .25s;
+.primary-btn {
+  background:var(--dark);
+  color:white;
+  border:1px solid var(--dark);
+  padding:17px 30px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s;
+  text-decoration:none;
+  display:inline-block;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px #a3ff1260;
+.primary-btn:hover {
+  background:var(--gold);
+  border-color:var(--gold);
 }
 
-.container {
-  padding: 55px 7%;
+.hero-image {
+  height:490px;
+  position:relative;
+  overflow:hidden;
 }
 
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  gap: 15px;
+.hero-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 1s;
 }
 
-.section-head h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 23px;
+.hero-image:hover img { transform:scale(1.04); }
+
+.hero-label {
+  position:absolute;
+  bottom:25px;
+  left:25px;
+  background:var(--bg);
+  padding:17px 23px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;
 }
 
-.section-head span { color: var(--green); }
+/* FEATURES */
 
-.search {
-  width: 260px;
-  max-width: 100%;
-  padding: 12px 16px;
-  background: var(--panel);
-  border: 1px solid #293248;
-  color: white;
-  border-radius: 8px;
-  outline: none;
+.features {
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:27px 7%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  text-align:center;
+  gap:20px;
 }
 
-.categories {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
+.feature {
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-.category {
-  background: var(--panel);
-  border: 1px solid #293248;
-  color: var(--muted);
-  padding: 10px 17px;
-  border-radius: 30px;
-  cursor: pointer;
+.feature span {
+  display:block;
+  color:var(--gold);
+  font-size:19px;
+  margin-bottom:7px;
 }
 
-.category.active, .category:hover {
-  background: var(--green);
-  color: #080b12;
-  border-color: var(--green);
+/* PRODUCTS */
+
+.shop {
+  padding:100px 7%;
 }
 
-.games {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 22px;
+.section-heading { text-align:center; margin-bottom:45px; }
+
+.section-heading .eyebrow { margin-bottom:12px; }
+
+.section-heading h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:55px;
+  font-weight:400;
 }
 
-.game-card {
-  background: var(--panel);
-  border: 1px solid #202a3c;
-  border-radius: 13px;
-  overflow: hidden;
-  transition: .3s;
+.section-heading p {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:10px;
 }
 
-.game-card:hover {
-  transform: translateY(-7px);
-  border-color: var(--green);
-  box-shadow: 0 10px 35px #0008;
+.filters {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:35px;
 }
 
-.game-card img {
-  width: 100%;
-  height: 155px;
-  object-fit: cover;
-  display: block;
+.filter-btn {
+  border:1px solid var(--border);
+  background:transparent;
+  padding:11px 22px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.3s;
 }
 
-.game-info { padding: 17px; }
-
-.game-info h3 {
-  margin-bottom: 8px;
-  font-size: 17px;
+.filter-btn.active,
+.filter-btn:hover {
+  background:var(--dark);
+  color:white;
+  border-color:var(--dark);
 }
 
-.game-info p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 16px;
-  line-height: 1.5;
+.search-box {
+  max-width:350px;
+  margin:0 auto 35px;
 }
 
-.game-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.search-box input {
+  width:100%;
+  padding:14px 17px;
+  border:1px solid var(--border);
+  background:transparent;
+  outline:none;
+  font-size:12px;
 }
 
-.game-footer small { color: var(--green); }
+.search-box input:focus { border-color:var(--gold); }
 
-.play {
-  border: none;
-  background: var(--green);
-  color: #080b12;
-  padding: 9px 17px;
-  border-radius: 6px;
-  font-weight: 800;
-  cursor: pointer;
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
 }
 
-.play:hover { background: white; }
+.product-card { min-width:0; }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 15px;
-  margin-top: 50px;
+.product-image {
+  height:300px;
+  position:relative;
+  overflow:hidden;
+  background:#ece8df;
 }
 
-.stat {
-  padding: 25px;
-  background: var(--panel);
-  border: 1px solid #202a3c;
-  border-radius: 12px;
-  text-align: center;
+.product-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s;
 }
 
-.stat h2 {
-  font-family: 'Orbitron',sans-serif;
-  color: var(--green);
-  font-size: 30px;
+.product-card:hover .product-image img {
+  transform:scale(1.06);
 }
 
-.stat p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 8px;
+.tag {
+  position:absolute;
+  top:13px;
+  left:13px;
+  background:var(--bg);
+  padding:7px 11px;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
+
+.product-info { padding:17px 2px; }
+
+.product-category {
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.product-info h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+  font-weight:500;
+  margin:7px 0;
+}
+
+.product-description {
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:14px;
+}
+
+.product-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.price { font-size:13px; font-weight:600; }
+
+.add-btn {
+  background:transparent;
+  border:1px solid var(--dark);
+  padding:10px 13px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.add-btn:hover {
+  background:var(--dark);
+  color:white;
+}
+
+.no-results {
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:50px;
+}
+
+/* STORY */
+
+.story {
+  background:#eae6de;
+  padding:100px 10%;
+  text-align:center;
+}
+
+.story h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:65px;
+  font-weight:400;
+  margin:15px 0;
+}
+
+.story p {
+  max-width:520px;
+  margin:0 auto 30px;
+  font-size:12px;
+  line-height:2.2;
+  color:#777168;
+}
+
+/* NEWSLETTER */
+
+.newsletter {
+  padding:90px 7%;
+  text-align:center;
+}
+
+.newsletter h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;
+  font-weight:400;
+  margin-bottom:12px;
+}
+
+.newsletter p {
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:25px;
+}
+
+.newsletter-form {
+  display:flex;
+  max-width:430px;
+  margin:auto;
+}
+
+.newsletter-form input {
+  flex:1;
+  min-width:0;
+  padding:15px;
+  background:transparent;
+  border:1px solid var(--border);
+  outline:none;
+}
+
+.newsletter-form button {
+  background:var(--dark);
+  color:white;
+  border:none;
+  padding:0 22px;
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* FOOTER */
 
 footer {
-  padding: 30px 7%;
-  border-top: 1px solid #20283a;
-  color: var(--muted);
-  text-align: center;
-  font-size: 13px;
+  background:var(--dark);
+  color:white;
+  padding:60px 7% 25px;
 }
 
-#gameModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  background: #000d;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+.footer-top {
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+  padding-bottom:45px;
 }
 
-.modal {
-  background: var(--panel);
-  padding: 30px;
-  border: 1px solid var(--green);
-  border-radius: 15px;
-  width: 450px;
-  max-width: 100%;
-  text-align: center;
+.footer-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:43px;
+  letter-spacing:5px;
 }
 
-.modal h2 {
-  font-family: 'Orbitron',sans-serif;
-  margin-bottom: 15px;
+.footer-description {
+  color:#aaa69e;
+  font-size:11px;
+  max-width:260px;
+  line-height:2;
+  margin-top:12px;
 }
 
-.modal p {
-  color: var(--muted);
-  margin-bottom: 20px;
+.footer-links { display:flex; flex-direction:column; gap:15px; }
+
+.footer-links a {
+  color:#aaa69e;
+  text-decoration:none;
+  font-size:11px;
 }
 
-.close {
-  margin-top: 15px;
-  background: #293248;
-  color: white;
-  padding: 10px 20px;
-  border: 0;
-  border-radius: 6px;
-  cursor: pointer;
+.footer-links a:hover { color:white; }
+
+.copyright {
+  border-top:1px solid #393832;
+  padding-top:22px;
+  color:#aaa69e;
+  font-size:10px;
+  text-align:center;
+}
+
+/* CART */
+
+.cart-panel {
+  position:fixed;
+  z-index:300;
+  top:0;
+  right:-420px;
+  width:min(400px,100%);
+  height:100vh;
+  background:var(--bg);
+  padding:30px;
+  transition:.4s;
+  overflow-y:auto;
+  box-shadow:-10px 0 40px #0001;
+}
+
+.cart-panel.open { right:0; }
+
+.cart-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:25px;
+  border-bottom:1px solid var(--border);
+}
+
+.cart-header h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+}
+
+.close-btn { border:0; background:none; font-size:25px; }
+
+.cart-item {
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:12px;
+}
+
+.remove-btn {
+  border:0;
+  background:none;
+  color:#9a634d;
+  font-size:11px;
+}
+
+.cart-total {
+  margin-top:30px;
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+}
+
+.checkout-btn {
+  width:100%;
+  padding:17px;
+  background:var(--dark);
+  color:white;
+  border:0;
+  margin-top:25px;
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0006;
+  z-index:200;
+}
+
+.overlay.show { display:block; }
+
+@media(max-width:900px) {
+  .product-grid { grid-template-columns:repeat(2,1fr); }
+  .hero { min-height:auto; }
+  .hero-image { height:400px; }
 }
 
 @media(max-width:650px) {
-  header { padding: 0 5%; }
-  nav { gap: 12px; }
-  nav a { font-size: 11px; }
-  .container { padding: 40px 5%; }
-  .hero { padding: 55px 5%; }
-  .stats { grid-template-columns: 1fr; }
-  .section-head { align-items: flex-start; flex-direction: column; }
+  header { height:72px; padding:0 5%; }
+  .logo { font-size:29px; }
+  nav {
+    display:none;
+    position:absolute;
+    top:72px;
+    left:0;
+    width:100%;
+    background:var(--bg);
+    padding:25px;
+    flex-direction:column;
+    border-bottom:1px solid var(--border);
+  }
+  nav.show { display:flex; }
+  .menu-btn { display:block; }
+  .hero {
+    grid-template-columns:1fr;
+    padding:60px 6%;
+    gap:35px;
+  }
+  .hero h1 { font-size:76px; }
+  .hero-image { height:380px; }
+  .features { padding:25px 5%; }
+  .feature { font-size:8px; }
+  .shop { padding:75px 5%; }
+  .section-heading h2 { font-size:43px; }
+  .product-grid { gap:13px; }
+  .product-image { height:230px; }
+  .product-info h3 { font-size:21px; }
+  .add-btn { padding:9px; }
+  .story { padding:75px 7%; }
+  .story h2 { font-size:48px; }
+  .newsletter h2 { font-size:38px; }
 }
 </style>
 </head>
 
 <body>
 
+<div class="topbar">
+  DISCOVER YOUR SIGNATURE SCENT · NOIRÉ COLLECTION
+</div>
+
 <header>
-  <div class="logo">NEX<span>PLAY</span></div>
-  <nav>
+  <div class="logo">NOIRÉ.</div>
+
+  <nav id="nav">
     <a href="#home">Home</a>
-    <a href="#games">Games</a>
-    <a href="#about">About</a>
+    <a href="#shop">Shop</a>
+    <a href="#story">Our Story</a>
+    <a href="#contact">Contact</a>
   </nav>
+
+  <div class="header-actions">
+    <button class="icon-btn" onclick="toggleCart()" aria-label="Open cart">
+      ♡ <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  </div>
 </header>
 
+<main>
 <section class="hero" id="home">
   <div class="hero-content">
-    <div class="tag">WELCOME TO THE NEXT LEVEL</div>
-    <h1>PLAY<br><span>WITHOUT</span><br>LIMITS.</h1>
+    <div class="eyebrow">THE ART OF FRAGRANCE</div>
+    <h1>Find your<br><span>signature.</span></h1>
     <p>
-      Descoperă universul NEXPLAY. Joacă jocuri distractive,
-      descoperă provocări și intră în lumea gamingului.
+      More than a fragrance. A feeling, a memory,
+      an identity. Discover a collection of scents
+      designed to make every moment unforgettable.
     </p>
-    <a href="#games" class="btn">EXPLORE GAMES →</a>
+    <a href="#shop" class="primary-btn">EXPLORE COLLECTION →</a>
+  </div>
+
+  <div class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1000&q=85"
+      alt="Luxury perfume bottle"
+    >
+    <div class="hero-label">The essence of elegance.</div>
   </div>
 </section>
 
-<main class="container" id="games">
+<section class="features">
+  <div class="feature"><span>✧</span>Premium selection</div>
+  <div class="feature"><span>◇</span>Curated fragrances</div>
+  <div class="feature"><span>♡</span>Made for you</div>
+</section>
 
-  <div class="section-head">
-    <h2>FEATURED <span>GAMES</span></h2>
-    <input class="search" id="search"
-      placeholder="🔍 Search games..."
-      oninput="filterGames()">
+<section class="shop" id="shop">
+  <div class="section-heading">
+    <div class="eyebrow">THE COLLECTION</div>
+    <h2>Discover your scent</h2>
+    <p>Find the fragrance that tells your story.</p>
   </div>
 
-  <div class="categories">
-    <button class="category active" onclick="setCategory('All',this)">All Games</button>
-    <button class="category" onclick="setCategory('Action',this)">Action</button>
-    <button class="category" onclick="setCategory('Racing',this)">Racing</button>
-    <button class="category" onclick="setCategory('Puzzle',this)">Puzzle</button>
-    <button class="category" onclick="setCategory('Sports',this)">Sports</button>
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="women">For her</button>
+    <button class="filter-btn" data-filter="men">For him</button>
+    <button class="filter-btn" data-filter="unisex">Unisex</button>
   </div>
 
-  <div class="games" id="gamesList"></div>
+  <div class="search-box">
+    <input id="searchInput" type="search"
+      placeholder="Search your favorite fragrance..."
+      aria-label="Search perfumes">
+  </div>
 
-  <section class="stats" id="about">
-    <div class="stat">
-      <h2>06</h2>
-      <p>FEATURED GAMES</p>
-    </div>
-    <div class="stat">
-      <h2>24/7</h2>
-      <p>GAMING FUN</p>
-    </div>
-    <div class="stat">
-      <h2>100%</h2>
-      <p>ENTERTAINMENT</p>
-    </div>
-  </section>
+  <div class="product-grid" id="productGrid"></div>
+  <div class="no-results" id="noResults">No fragrances found.</div>
+</section>
 
+<section class="story" id="story">
+  <div class="eyebrow">BEYOND THE ORDINARY</div>
+  <h2>Every scent tells a story.</h2>
+  <p>
+    We believe fragrance is one of the most personal forms
+    of expression. A beautiful scent can capture a moment,
+    awaken a memory and become part of who you are.
+    Discover your next signature.
+  </p>
+  <a href="#shop" class="primary-btn">FIND YOUR FRAGRANCE</a>
+</section>
+
+<section class="newsletter" id="contact">
+  <div class="eyebrow">STAY IN THE SCENT</div>
+  <h2>A little something special.</h2>
+  <p>Subscribe for collection updates and exclusive offers.</p>
+
+  <form class="newsletter-form" id="newsletterForm">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit">JOIN US</button>
+  </form>
+  <p id="newsletterMessage" style="margin-top:15px"></p>
+</section>
 </main>
 
-<div id="gameModal">
-  <div class="modal">
-    <h2 id="modalTitle">GAME</h2>
-    <p id="modalDescription"></p>
-    <div id="gameArea"></div>
-    <button class="close" onclick="closeGame()">CLOSE</button>
-  </div>
-</div>
-
 <footer>
-  © 2026 NEXPLAY — YOUR GAMING UNIVERSE.
-  <br><br>Made for gamers.
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">NOIRÉ.</div>
+      <p class="footer-description">
+        A curated world of fragrances.
+        Discover your identity through scent.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#shop">Collection</a>
+      <a href="#story">Our story</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#shop">Best sellers</a>
+      <a href="#shop">New arrivals</a>
+      <a href="#contact">Newsletter</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2026 NOIRÉ. ALL RIGHTS RESERVED.
+    · DEMO STORE
+  </div>
 </footer>
 
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>Your bag</h2>
+    <button class="close-btn" onclick="toggleCart()">×</button>
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-total">
+    <span>Total</span>
+    <span id="cartTotal">0 RON</span>
+  </div>
+
+  <button class="checkout-btn" onclick="checkout()">
+    CONTINUE TO CHECKOUT
+  </button>
+</aside>
+
 <script>
-const games = [
+const products = [
   {
-    name:"Neon Runner",
-    category:"Action",
-    description:"Evită obstacolele și încearcă să obții un scor cât mai mare.",
-    image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700"
+    id:1,
+    name:"Golden Hour",
+    category:"women",
+    type:"FLORAL · WARM",
+    description:"Soft floral notes with a golden touch.",
+    price:349,
+    tag:"BESTSELLER",
+    image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=85"
   },
   {
-    name:"Speed Legends",
-    category:"Racing",
-    description:"Intră în lumea curselor și a vitezei.",
-    image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700"
+    id:2,
+    name:"Midnight Oud",
+    category:"men",
+    type:"WOODY · INTENSE",
+    description:"Deep woods and mysterious elegance.",
+    price:429,
+    tag:"EXCLUSIVE",
+    image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=700&q=85"
   },
   {
-    name:"Brain Master",
-    category:"Puzzle",
-    description:"Testează-ți logica și rezolvă provocările.",
-    image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=700"
+    id:3,
+    name:"Pure Essence",
+    category:"unisex",
+    type:"FRESH · CLEAN",
+    description:"A fresh, timeless everyday signature.",
+    price:289,
+    tag:"NEW",
+    image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&q=85"
   },
   {
-    name:"Football Stars",
-    category:"Sports",
-    description:"Descoperă pasiunea pentru fotbal.",
-    image:"https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700"
+    id:4,
+    name:"Rose Velvet",
+    category:"women",
+    type:"ROSE · MUSK",
+    description:"Elegant rose with a delicate finish.",
+    price:379,
+    tag:"",
+    image:"https://images.unsplash.com/photo-1541643600914-78b084683601?w=700&q=85"
   },
   {
-    name:"Cyber World",
-    category:"Action",
-    description:"Explorează un univers digital futurist.",
-    image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700"
+    id:5,
+    name:"Noir Intense",
+    category:"men",
+    type:"SPICY · WOODY",
+    description:"Bold character and refined warmth.",
+    price:399,
+    tag:"POPULAR",
+    image:"https://images.unsplash.com/photo-1590736969955-71cc94901144?w=700&q=85"
   },
   {
-    name:"Drift City",
-    category:"Racing",
-    description:"Pregătește-te pentru o aventură pe patru roți.",
-    image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700"
+    id:6,
+    name:"Cloud Nine",
+    category:"unisex",
+    type:"FRESH · MUSK",
+    description:"Light, airy and effortlessly modern.",
+    price:319,
+    tag:"",
+    image:"https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=700&q=85"
+  },
+  {
+    id:7,
+    name:"Amber Soul",
+    category:"women",
+    type:"AMBER · SWEET",
+    description:"Warm amber with a sophisticated character.",
+    price:459,
+    tag:"PREMIUM",
+    image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&q=85"
+  },
+  {
+    id:8,
+    name:"Urban Spirit",
+    category:"men",
+    type:"CITRUS · FRESH",
+    description:"Fresh energy inspired by the city.",
+    price:299,
+    tag:"",
+    image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=700&q=85"
   }
 ];
 
-let currentCategory = "All";
+let activeFilter = "all";
+let cart = [];
 
-function renderGames() {
-  const search = document.getElementById("search").value.toLowerCase();
-  const list = document.getElementById("gamesList");
+const grid = document.getElementById("productGrid");
 
-  const filtered = games.filter(game =>
-    (currentCategory === "All" || game.category === currentCategory) &&
-    game.name.toLowerCase().includes(search)
+function renderProducts() {
+  const search = document.getElementById("searchInput")
+    .value.toLowerCase();
+
+  const filtered = products.filter(p => {
+    const matchesCategory =
+      activeFilter === "all" || p.category === activeFilter;
+
+    const matchesSearch =
+      (p.name + " " + p.type + " " + p.description)
+      .toLowerCase().includes(search);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  grid.innerHTML = filtered.map(p => `
+    <article class="product-card">
+      <div class="product-image">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+      </div>
+      <div class="product-info">
+        <div class="product-category">${p.type}</div>
+        <h3>${p.name}</h3>
+        <p class="product-description">${p.description}</p>
+        <div class="product-bottom">
+          <span class="price">${p.price} RON</span>
+          <button class="add-btn" onclick="addToCart(${p.id})">
+            + ADD
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("noResults").style.display =
+    filtered.length ? "none" : "block";
+}
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector(".filter-btn.active")
+      ?.classList.remove("active");
+
+    button.classList.add("active");
+    activeFilter = button.dataset.filter;
+    renderProducts();
+  });
+});
+
+document.getElementById("searchInput")
+  .addEventListener("input", renderProducts);
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(p => p.id === id);
+
+  if (existing) existing.quantity++;
+  else cart.push({...product, quantity:1});
+
+  updateCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(p => p.id !== id);
+  updateCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((sum,p) => sum+p.quantity,0);
+
+  document.getElementById("cartCount").textContent = count;
+
+  document.getElementById("cartItems").innerHTML =
+    cart.length ? cart.map(p => `
+      <div class="cart-item">
+        <div>
+          <strong>${p.name}</strong><br>
+          ${p.quantity} × ${p.price} RON
+        </div>
+        <button class="remove-btn"
+          onclick="removeFromCart(${p.id})">REMOVE</button>
+      </div>
+    `).join("") : "<p style='padding:30px 0;color:#888'>Your bag is empty.</p>";
+
+  const total = cart.reduce(
+    (sum,p) => sum + p.price*p.quantity,0
   );
 
-  list.innerHTML = "";
+  document.getElementById("cartTotal").textContent =
+    total.toLocaleString("ro-RO") + " RON";
+}
 
-  filtered.forEach(game => {
-    const card = document.createElement("article");
-    card.className = "game-card";
+function toggleCart() {
+  document.getElementById("cartPanel")
+    .classList.toggle("open");
 
-    const img = document.createElement("img");
-    img.src = game.image;
-    img.alt = game.name;
-    img.loading = "lazy";
+  document.getElementById("overlay")
+    .classList.toggle("show");
+}
 
-    const info = document.createElement("div");
-    info.className = "game-info";
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("show");
+}
 
-    const title = document.createElement("h3");
-    title.textContent = game.name;
+function checkout() {
+  if (!cart.length) {
+    alert("Your shopping bag is empty!");
+    return;
+  }
 
-    const description = document.createElement("p");
-    description.textContent = game.description;
+  alert("Demo store: checkout-ul nu este încă conectat la un sistem de plată.");
+}
 
-    const footer = document.createElement("div");
-    footer.className = "game-footer";
+document.getElementById("newsletterForm")
+  .addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    const category = document.createElement("small");
-    category.textContent = game.category.toUpperCase();
+    document.getElementById("newsletterMessage")
+      .textContent = "Thank you for joining NOIRÉ!";
 
-    const button = document.createElement("button");
-    button.className = "play";
-    button.textContent = "PLAY →";
-    button.addEventListener("click", () => openGame(game));
-
-    footer.append(category, button);
-    info.append(title, description, footer);
-    card.append(img, info);
-    list.append(card);
+    this.reset();
   });
 
-  if (!filtered.length) {
-    list.textContent = "No games found. Try another search.";
-  }
-}
-
-function filterGames() {
-  renderGames();
-}
-
-function setCategory(category, button) {
-  currentCategory = category;
-  document.querySelectorAll(".category").forEach(btn =>
-    btn.classList.remove("active")
-  );
-  button.classList.add("active");
-  renderGames();
-}
-
-function openGame(game) {
-  document.getElementById("gameModal").style.display = "flex";
-  document.getElementById("modalTitle").textContent = game.name;
-  document.getElementById("modalDescription").textContent = game.description;
-
-  const area = document.getElementById("gameArea");
-  area.innerHTML = "";
-
-  if (game.name === "Neon Runner") {
-    startRunner(area);
-  } else {
-    const message = document.createElement("p");
-    message.textContent = "Acest joc este momentan în curând. Revino pentru update-uri!";
-    area.append(message);
-  }
-}
-
-function closeGame() {
-  document.getElementById("gameModal").style.display = "none";
-}
-
-function startRunner(area) {
-  const canvas = document.createElement("canvas");
-  canvas.width = 350;
-  canvas.height = 190;
-  canvas.style.maxWidth = "100%";
-  canvas.style.background = "#080b12";
-  canvas.style.border = "1px solid #a3ff12";
-  canvas.style.borderRadius = "8px";
-
-  const scoreText = document.createElement("p");
-  scoreText.style.marginTop = "12px";
-
-  const instruction = document.createElement("p");
-  instruction.textContent = "Apasă SPACE sau click pentru a sări!";
-  instruction.style.fontSize = "12px";
-
-  area.append(canvas, scoreText, instruction);
-
-  const ctx = canvas.getContext("2d");
-  let playerY = 145;
-  let velocity = 0;
-  let obstacleX = 350;
-  let score = 0;
-  let running = true;
-  let frame;
-
-  function jump() {
-    if (playerY >= 145) velocity = -9;
-  }
-
-  function keyHandler(e) {
-    if (e.code === "Space") {
-      e.preventDefault();
-      jump();
-    }
-  }
-
-  document.addEventListener("keydown", keyHandler);
-  canvas.addEventListener("click", jump);
-
-  function draw() {
-    if (!running) return;
-
-    ctx.clearRect(0,0,350,190);
-
-    ctx.fillStyle = "#a3ff12";
-    ctx.fillRect(0,170,350,3);
-
-    velocity += 0.45;
-    playerY += velocity;
-
-    if (playerY > 145) {
-      playerY = 145;
-      velocity = 0;
-    }
-
-    obstacleX -= 4;
-
-    if (obstacleX < -20) {
-      obstacleX = 350;
-      score++;
-    }
-
-    ctx.fillStyle = "#a3ff12";
-    ctx.fillRect(35,playerY,25,25);
-
-    ctx.fillStyle = "#a855f7";
-    ctx.fillRect(obstacleX,145,18,25);
-
-    ctx.fillStyle = "white";
-    ctx.font = "14px Arial";
-    ctx.fillText("SCORE: " + score, 12, 20);
-
-    if (
-      obstacleX < 60 &&
-      obstacleX > 25 &&
-      playerY > 120
-    ) {
-      running = false;
-      ctx.fillStyle = "white";
-      ctx.font = "22px Arial";
-      ctx.fillText("GAME OVER", 105, 90);
-      scoreText.textContent = "Scor final: " + score;
-      document.removeEventListener("keydown", keyHandler);
-      return;
-    }
-
-    scoreText.textContent = "Scor: " + score;
-    frame = requestAnimationFrame(draw);
-  }
-
-  draw();
-
-  const observer = new MutationObserver(() => {
-    if (!document.getElementById("gameModal").contains(canvas)) {
-      running = false;
-      cancelAnimationFrame(frame);
-      document.removeEventListener("keydown", keyHandler);
-      observer.disconnect();
-    }
-  });
-
-  observer.observe(document.getElementById("gameModal"), {
-    childList:true,
-    subtree:true
-  });
-}
-
-renderGames();
+renderProducts();
+updateCart();
 </script>
 
 </body>
